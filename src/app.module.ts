@@ -6,11 +6,13 @@ import { AssociationsModule } from './modules/associations/associations.module';
 import { DepartmentsModule } from './modules/departments/departments.module';
 import { AchievementsModule } from './modules/achievements/achievements.module';
 import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [ConfigModule.forRoot(
     {
       envFilePath: `.env.${process.env.NODE_ENV || 'development'}.local`,
+      load: [configuration],
     }
   ), UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule],
   controllers: [AppController],
