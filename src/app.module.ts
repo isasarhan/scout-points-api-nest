@@ -7,14 +7,17 @@ import { DepartmentsModule } from './modules/departments/departments.module';
 import { AchievementsModule } from './modules/achievements/achievements.module';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(
-    {
+  imports: [
+    ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV || 'development'}.local`,
       load: [configuration],
-    }
-  ), UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule],
+    }),
+    MongooseModule.forRoot(`${process.env.DATABASE_HOST}`),
+    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
