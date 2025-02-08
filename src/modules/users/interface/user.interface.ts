@@ -17,5 +17,13 @@ export interface IUser extends Document {
     nationality: string;
     points: number;
     department: string;
+    role: Role
     matchPassword(enteredPassword: string): Promise<boolean>;
+}
+
+export enum Role {
+    ADMIN = 'admin',
+    USER = 'user',
+    MANAGER = 'manager',
+    MODERATOR = 'moderator',
 }

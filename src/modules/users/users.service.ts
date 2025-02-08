@@ -27,11 +27,11 @@ export class UsersService {
     }
 
     async findById(id: string) {
-        return await this.userModel.findById(id).exec()
+        return await this.userModel.findById(id).select('-password').exec()
     }
 
     async findAll(): Promise<IUser[]> {
-        return await this.userModel.find()
+        return await this.userModel.find().select('-password')
     }
 
     async delete(id: string) {

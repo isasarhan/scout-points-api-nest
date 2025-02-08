@@ -2,6 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument } from 'mongoose';
 import { Type } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../interface/user.interface';
+
 
 
 @Schema({ _id: false })
@@ -48,6 +50,9 @@ export class User {
 
   @Prop()
   department: string;
+
+  @Prop({ type: String, enum: Role, default: Role.USER })
+  role: Role;
 
   matchPassword: (enteredPassword: string) => Promise<boolean>;
 }
