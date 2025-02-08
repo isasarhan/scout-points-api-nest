@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
 import { IUser } from './interface/user.interface';
+import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(User.name) private userModel: Model<User>) { }
@@ -21,17 +22,22 @@ export class UsersService {
 
         return await user.save();
     }
-
+    async update(userDto: UpdateUserDto): Promise<IUser | null> {
+        const { _id, ...user } = userDto
+        return await this.userModel.findByIdAndUpdate(_id, {
+            $set: user
+        }, { new: true })
+    }
     async findByEmail(email: string): Promise<IUser | null> {
         return await this.userModel.findOne({ email }).exec()
     }
 
     async findById(id: string) {
-        return await this.userModel.findById(id).select('-password').exec()
+        return await this.userModel.findById(id).exec()
     }
 
     async findAll(): Promise<IUser[]> {
-        return await this.userModel.find().select('-password')
+        return await this.userModel.find()
     }
 
     async delete(id: string) {
