@@ -33,5 +33,4 @@ export class UsersController {
     async delete(@Param('id') id: GetUserDto) {
         return await this.userService.delete(id);
     }
-
 }
