@@ -2,39 +2,42 @@ import { Type } from "class-transformer";
 import {
     IsDate,
     IsMongoId,
-    IsNotEmpty,
     IsOptional,
-    IsString
+    IsString,
 } from "class-validator";
 import { ObjectId } from "mongoose";
 
-export class CreateAchievementDto {
-    @IsNotEmpty()
-    @IsString()
-    title: string;
+export class UpdateAchievementDto {
+    @IsOptional()
+    @IsMongoId()
+    _id?: ObjectId;
 
     @IsOptional()
     @IsString()
-    description: string;
+    title?: string;
 
-    @IsNotEmpty()
+    @IsOptional()
+    @IsString()
+    description?: string;
+
+    @IsOptional()
     @Type(() => Date)
     @IsDate()
-    date: Date;
+    date?: Date;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsMongoId()
-    category: ObjectId;
+    category?: ObjectId;
 
     @IsOptional()
     @IsString()
-    awardedBy: string;
+    awardedBy?: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsMongoId()
-    user: ObjectId;
+    user?: ObjectId;
 
     @IsOptional()
     @IsString({ each: true })
-    attachments: string[];
+    attachments?: string[];
 }

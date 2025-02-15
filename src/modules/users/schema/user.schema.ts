@@ -1,10 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, HydratedDocument } from 'mongoose';
 import { Type } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from '../interface/user.interface';
-
-
 
 @Schema({ _id: false })
 class Address {

@@ -19,10 +19,6 @@ class AddressDto {
 
 export class UpdateUserDto {
     @IsNotEmpty()
-    @IsMongoId()
-    _id: string;
-
-    @IsNotEmpty()
     name: string;
 
     @IsEmail()

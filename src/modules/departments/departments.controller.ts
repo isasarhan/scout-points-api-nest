@@ -4,13 +4,14 @@ import { Roles } from 'src/common/decorators/roles.decorator'
 import { Role } from '../users/interface/user.interface'
 import { CreateDepartmentDto } from './dto/create-department.dto'
 import { UpdateDepartmentDto } from './dto/update-department.dto'
+import { GetDepartmentDto } from './dto/get-department.dto'
 
 @Controller('departments')
 export class DepartmentsController {
     constructor(private departmentService: DepartmentsService) { }
 
     @Get(':id')
-    async findById(@Param('id') id: string) {
+    async findById(@Param('id') id: GetDepartmentDto) {
         return await this.departmentService.findById(id)
     }
 
@@ -27,14 +28,14 @@ export class DepartmentsController {
     }
     
     @Roles(Role.ADMIN)
-    @Put('update')
-    async update(@Body() updateDepartmentDto: UpdateDepartmentDto) {
-        return await this.departmentService.update(updateDepartmentDto)
+    @Put(':id')
+    async update(@Param('id') id: GetDepartmentDto, @Body() updateDepartmentDto: UpdateDepartmentDto) {
+        return await this.departmentService.update(id, updateDepartmentDto)
     }
     
     @Roles(Role.ADMIN)
-    @Delete('delete')
-    async delete(@Body() id: string) {
+    @Delete(':id')
+    async delete(@Param('id') id: GetDepartmentDto) {
         return await this.departmentService.delete(id)
     }
 

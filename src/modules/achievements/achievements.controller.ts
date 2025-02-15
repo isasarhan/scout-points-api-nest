@@ -1,10 +1,16 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { AchievementsService } from './achievements.service';
-import { CreateAchievementCategoryDto, CreateAchievementDto } from './dto/create-achievement.dto';
+import {  CreateAchievementDto } from './dto/create-achievement.dto';
+import { GetAchievementDto } from './dto/get-achievement.dto';
 
 @Controller('achievements')
 export class AchievementsController {
     constructor(private achievementService: AchievementsService) { }
+
+    @Get(':id')
+    async findById(@Param('id') id: GetAchievementDto) {
+        return await this.achievementService.findById(id)
+    }
 
     @Get()
     async findAll() {
@@ -16,13 +22,4 @@ export class AchievementsController {
         return await this.achievementService.create(createAchievementDto)
     }
 
-    @Get('categories')
-    async findAllCategories() {
-        return await this.achievementService.findAllCategories()
-    }
-    
-    @Post('categories/add')
-    async createCategory(createCategory: CreateAchievementCategoryDto) {
-        return await this.achievementService.createCategory(createCategory)
-    }
 }

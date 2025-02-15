@@ -6,6 +6,7 @@ import { IDepartment } from './interface/department.interface';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UsersService } from '../users/users.service';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { GetDepartmentDto } from './dto/get-department.dto';
 
 @Injectable()
 export class DepartmentsService {
@@ -24,10 +25,9 @@ export class DepartmentsService {
         return await department.save();
     }
 
-    async update(departmentDto: UpdateDepartmentDto): Promise<IDepartment | null> {
-        const { _id, ...department } = departmentDto
-        return await this.departmentModel.findByIdAndUpdate(_id, {
-            $set: department
+    async update(id: GetDepartmentDto, departmentDto: UpdateDepartmentDto): Promise<IDepartment | null> {
+        return await this.departmentModel.findByIdAndUpdate(id, {
+            $set: departmentDto
         }, { new: true })
     }
 
@@ -35,7 +35,7 @@ export class DepartmentsService {
         return await this.departmentModel.findOne({ username: username }).populate('manager').exec()
     }
 
-    async findById(id: string) {
+    async findById(id: GetDepartmentDto) {
         return await this.departmentModel.findById(id).exec()
     }
 
@@ -43,7 +43,7 @@ export class DepartmentsService {
         return await this.departmentModel.find()
     }
 
-    async delete(id: string) {
+    async delete(id: GetDepartmentDto) {
         return await this.departmentModel.findByIdAndDelete(id)
     }
 }

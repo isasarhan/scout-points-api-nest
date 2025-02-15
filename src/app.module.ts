@@ -10,6 +10,7 @@ import configuration from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
+import { AchievementsCategoriesModule } from './modules/achievements/category/achievementsCategory.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AuthMiddleware } from './common/middlewares/auth.middleware';
       load: [configuration],
     }),
     MongooseModule.forRoot(`${process.env.DATABASE_HOST}`),
-    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule],
+    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule],
   controllers: [AppController],
   providers: [AppService],
 })
