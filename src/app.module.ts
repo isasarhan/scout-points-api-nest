@@ -10,7 +10,6 @@ import configuration from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
-import { User, UserSchema } from './modules/users/schema/user.schema';
 
 @Module({
   imports: [
