@@ -24,7 +24,16 @@ class Address {
 @Schema()
 export class User {
   @Prop({ required: true })
-  name: string;
+  firstName: string;
+
+  @Prop({ required: true })
+  lastName: string;
+  
+  @Prop({ required: true })
+  fatherName: string;
+
+  @Prop()
+  motherName: string;
 
   @Prop({ required: true, unique: true })
   email: string;

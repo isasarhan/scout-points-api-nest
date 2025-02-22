@@ -26,7 +26,7 @@ export class AuthService {
 
         const token = this.generateJwtToken(user._id as string)
 
-        return { token }
+        return { token , user}
     }
 
     private generateJwtToken(userId: string): string {

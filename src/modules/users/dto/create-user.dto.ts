@@ -19,7 +19,16 @@ class AddressDto {
 
 export class CreateUserDto {
     @IsNotEmpty()
-    name: string;
+    firstName: string;
+
+    @IsNotEmpty()
+    lastName: string;
+
+    @IsOptional()
+    fatherName?:string
+    
+    @IsOptional()
+    motherName?:string
 
     @IsEmail()
     email: string;

@@ -9,7 +9,10 @@ interface Address {
 }
 
 export interface IUser extends Document {
-    name: string;
+    firstName: string;
+    lastName: string;
+    fatherName: string;
+    motherName: string;
     email: string;
     password: string;
     phone: string;

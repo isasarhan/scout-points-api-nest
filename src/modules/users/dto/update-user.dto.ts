@@ -19,10 +19,19 @@ class AddressDto {
 
 export class UpdateUserDto {
     @IsNotEmpty()
-    name: string;
+    firstName: string;
+
+    @IsNotEmpty()
+    lastName: string;
 
     @IsEmail()
     email: string;
+
+    @IsOptional()
+    fatherName?:string
+    
+    @IsOptional()
+    motherName?:string
 
     @IsNotEmpty()
     @MinLength(6)
