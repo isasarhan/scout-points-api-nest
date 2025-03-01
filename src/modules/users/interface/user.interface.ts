@@ -20,6 +20,7 @@ export interface IUser extends Document {
     nationality: string;
     points: number;
     department: string;
+    profileUrl:string
     role: Role
     matchPassword(enteredPassword: string): Promise<boolean>;
 }

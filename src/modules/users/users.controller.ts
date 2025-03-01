@@ -12,8 +12,8 @@ export class UsersController {
     constructor(private userService: UsersService) { }
 
     @Get(':id')
-    async findById(@Param('id') id: GetUserDto) {
-        return await this.userService.findById(id)
+    async findById(@Param() params: GetUserDto) {
+        return await this.userService.findById(params.id)
     }
 
     @Roles(Role.ADMIN)

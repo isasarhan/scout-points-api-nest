@@ -57,6 +57,9 @@ export class User {
   @Prop()
   department: string;
 
+  @Prop()
+  profileUrl: string;
+
   @Prop({ type: String, enum: Role, default: Role.USER })
   role: Role;
 

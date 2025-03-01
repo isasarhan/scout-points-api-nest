@@ -29,6 +29,9 @@ export class CreateUserDto {
     
     @IsOptional()
     motherName?:string
+    
+    @IsOptional()
+    profileUrl?:string
 
     @IsEmail()
     email: string;
