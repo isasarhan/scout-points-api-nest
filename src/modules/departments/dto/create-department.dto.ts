@@ -1,4 +1,4 @@
-import { IsEnum, IsMongoId, IsNotEmpty, IsString } from "class-validator";
+import { IsEnum, IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { EnumDepartmentStatus, EnumDepartmentType } from "../interface/department.interface";
 import { ObjectId } from "mongoose";
 
@@ -36,5 +36,6 @@ export class CreateDepartmentDto {
   description: string;
 
   @IsMongoId()
-  manager: ObjectId;
+  @IsOptional()
+  manager?: ObjectId;
 }

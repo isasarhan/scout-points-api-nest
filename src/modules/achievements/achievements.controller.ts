@@ -19,6 +19,7 @@ export class AchievementsController {
 
     @Post('add')
     async create(createAchievementDto: CreateAchievementDto) {
+        // if(!createAchievementDto.department)
         return await this.achievementService.create(createAchievementDto)
     }
 

@@ -35,7 +35,7 @@ export class UpdateAchievementDto {
 
     @IsOptional()
     @IsMongoId()
-    user?: ObjectId;
+    department?: ObjectId;
 
     @IsOptional()
     @IsString({ each: true })

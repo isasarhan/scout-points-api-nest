@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Type } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from '../interface/user.interface';
+import { ObjectId, Types } from 'mongoose';
 
 @Schema({ _id: false })
 class Address {
@@ -28,7 +29,7 @@ export class User {
 
   @Prop({ required: true })
   lastName: string;
-  
+
   @Prop({ required: true })
   fatherName: string;
 
@@ -59,6 +60,11 @@ export class User {
 
   @Prop()
   profileUrl: string;
+
+
+
+  @Prop({ type: Types.ObjectId, ref: 'Achievement', required: false })
+  achievements: ObjectId[]
 
   @Prop({ type: String, enum: Role, default: Role.USER })
   role: Role;

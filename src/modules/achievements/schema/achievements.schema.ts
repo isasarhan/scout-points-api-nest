@@ -18,8 +18,8 @@ export class Achievement {
     @Prop()
     awardedBy: string
     
-    @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-    user: ObjectId
+    @Prop({ type: Types.ObjectId, ref: 'Departments', required: true })
+    department: ObjectId
     
     @Prop()
     attachments: string[]

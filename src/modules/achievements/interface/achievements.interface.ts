@@ -5,6 +5,6 @@ export interface IAchievement extends Document {
     date: Date;
     category: ObjectId;
     awardedBy?: string;
-    user: ObjectId;
+    department: ObjectId;
     attachments?: string[];
 }

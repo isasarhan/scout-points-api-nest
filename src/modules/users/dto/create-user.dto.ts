@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { IsArray, IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 
 class AddressDto {
     @IsNotEmpty()
@@ -51,6 +51,10 @@ export class CreateUserDto {
 
     @IsOptional()
     points?: number;
+    
+    @IsArray()
+    @IsOptional()
+    achievements?: Object[];
 
     @IsOptional()
     department?: string;

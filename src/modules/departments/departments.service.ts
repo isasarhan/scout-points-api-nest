@@ -17,11 +17,11 @@ export class DepartmentsService {
         if (existingUser) {
             throw new ConflictException(`Department with username ${departmentDto.username} already exists.`);
         }
-
         const department = new this.departmentModel({
             ...departmentDto,
         });
-
+        console.log('department', department);
+        
         return await department.save();
     }
 

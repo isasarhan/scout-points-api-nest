@@ -32,7 +32,7 @@ export class CreateAchievementDto {
 
     @IsNotEmpty()
     @IsMongoId()
-    user: ObjectId;
+    department: ObjectId;
 
     @IsOptional()
     @IsString({ each: true })

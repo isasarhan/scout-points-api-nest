@@ -47,7 +47,7 @@ export class Department {
     @Prop({ type: String })
     description: string;
 
-    @Prop({ type: Types.ObjectId, ref: 'User' })
+    @Prop({ type: Types.ObjectId, ref: 'User', required: false })
     manager: ObjectId;
 }
 

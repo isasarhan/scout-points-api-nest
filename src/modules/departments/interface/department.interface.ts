@@ -16,11 +16,12 @@ export interface ILocation {
 
 export interface IDepartment extends Document {
     name: string;
+    username: string;
     location: ILocation;
     type: EnumDepartmentType;
     status: EnumDepartmentStatus;
     createdAt: Date;
     updatedAt: Date;
     description: string;
-    manager: ObjectId;
+    manager?: ObjectId;
 }

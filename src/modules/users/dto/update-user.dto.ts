@@ -1,4 +1,4 @@
-import { IsEmail, IsMongoId, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { IsArray, IsEmail, IsMongoId, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 
 class AddressDto {
     @IsNotEmpty()
@@ -28,10 +28,10 @@ export class UpdateUserDto {
     email: string;
 
     @IsOptional()
-    fatherName?:string
-    
+    fatherName?: string
+
     @IsOptional()
-    motherName?:string
+    motherName?: string
 
     @IsNotEmpty()
     @MinLength(6)
@@ -48,6 +48,10 @@ export class UpdateUserDto {
 
     @IsOptional()
     points?: number;
+
+    @IsArray()
+    @IsOptional()
+    achievements?: Object[];
 
     @IsOptional()
     department?: string;
