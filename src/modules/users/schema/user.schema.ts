@@ -47,7 +47,7 @@ export class User {
 
   @Prop({ type: Address })
   @Type(() => Address)
-  address: Address;
+  address: Address
 
   @Prop()
   nationality: string;
@@ -60,8 +60,6 @@ export class User {
 
   @Prop()
   profileUrl: string;
-
-
 
   @Prop({ type: Types.ObjectId, ref: 'Achievement', required: false })
   achievements: ObjectId[]
