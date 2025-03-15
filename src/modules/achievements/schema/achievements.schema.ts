@@ -13,7 +13,7 @@ export class Achievement {
     date: Date
 
     @Prop({ type: Types.ObjectId, ref: 'AchievementCategory', required: true })
-    category: ObjectId
+    categories: ObjectId[]
 
     @Prop()
     awardedBy: string

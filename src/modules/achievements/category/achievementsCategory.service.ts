@@ -10,28 +10,28 @@ import { GetAchievementCategoryDto } from "./dto/get-category.dto";
 
 @Injectable()
 export class AchievementsCategoriesService {
-    constructor(@InjectModel(AchievementCategory.name) private achievementCategoryModel: Model<AchievementCategory>){}
+    constructor(@InjectModel(AchievementCategory.name) private achievementCategoryModel: Model<AchievementCategory>) { }
 
-    async createCategory(categoryDto: CreateAchievementCategoryDto): Promise<IAchievemntCategory> {
+    async create(categoryDto: CreateAchievementCategoryDto): Promise<IAchievemntCategory> {
         const category = new this.achievementCategoryModel({ ...categoryDto })
         return await category.save()
     }
 
-    async updateCategory(categoryDto: UpdateAchievementCategoryDto): Promise<IAchievemntCategory | null> {
+    async update(categoryDto: UpdateAchievementCategoryDto): Promise<IAchievemntCategory | null> {
         const { _id, ...category } = categoryDto
         return await this.achievementCategoryModel.findByIdAndUpdate(_id, {
             $set: category
         }, { new: true })
     }
-    async findAllCategories(): Promise<IAchievemntCategory[]> {
+    async findAll(): Promise<IAchievemntCategory[]> {
         return await this.achievementCategoryModel.find().exec()
     }
 
-    async findCategoryById(id: GetAchievementCategoryDto) {
+    async findById(id: string) {
         return await this.achievementCategoryModel.findById(id).exec()
     }
 
-    async deleteCategory(id: string) {
+    async delete(id: string) {
         return await this.achievementCategoryModel.findByIdAndDelete(id)
     }
 }

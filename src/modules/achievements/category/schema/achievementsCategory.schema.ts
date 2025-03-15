@@ -9,6 +9,9 @@ export class AchievementCategory {
 
     @Prop()
     description: string;
+    
+    @Prop()
+    imageUrl: string;
 }
 
 export const AchievementCategorySchema = SchemaFactory.createForClass(AchievementCategory);

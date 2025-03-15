@@ -1,5 +1,6 @@
 import { Type } from "class-transformer";
 import {
+    IsArray,
     IsDate,
     IsMongoId,
     IsNotEmpty,
@@ -24,7 +25,8 @@ export class CreateAchievementDto {
 
     @IsNotEmpty()
     @IsMongoId()
-    category: ObjectId;
+    @IsArray()
+    categories: ObjectId[];
 
     @IsOptional()
     @IsString()

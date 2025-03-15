@@ -12,4 +12,9 @@ export class CreateAchievementCategoryDto {
     @IsOptional()
     @IsString()
     description: string;
+
+    @IsOptional()
+    @IsString()
+    imageUrl: string;
+
 }

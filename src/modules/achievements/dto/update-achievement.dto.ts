@@ -1,5 +1,6 @@
 import { Type } from "class-transformer";
 import {
+    IsArray,
     IsDate,
     IsMongoId,
     IsOptional,
@@ -27,7 +28,8 @@ export class UpdateAchievementDto {
 
     @IsOptional()
     @IsMongoId()
-    category?: ObjectId;
+    @IsArray()
+    categories: ObjectId[];
 
     @IsOptional()
     @IsString()

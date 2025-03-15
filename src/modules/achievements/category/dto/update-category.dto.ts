@@ -5,7 +5,6 @@ import {
 } from "class-validator";
 
 export class UpdateAchievementCategoryDto {
-    @IsOptional()
     @IsMongoId()
     _id?: string;
 
@@ -16,4 +15,8 @@ export class UpdateAchievementCategoryDto {
     @IsOptional()
     @IsString()
     description?: string;
+
+    @IsOptional()
+    @IsString()
+    imageUrl: string;
 }
