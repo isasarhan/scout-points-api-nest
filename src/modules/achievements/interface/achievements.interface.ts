@@ -1,10 +1,12 @@
 import { Document, ObjectId } from "mongoose"
 export interface IAchievement extends Document {
     title: string;
-    description?: string;
-    date: Date;
+    description: string;
+    deadline?: Date;
     categories: ObjectId[];
-    awardedBy?: string;
-    department: ObjectId;
+    awardedBy?: ObjectId;
+    departments: ObjectId[];
     attachments?: string[];
+    points: number
+
 }

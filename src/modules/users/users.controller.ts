@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
@@ -27,7 +27,7 @@ export class UsersController {
     async add(@Body() createUserDto: CreateUserDto) {
         return await this.userService.create(createUserDto)
     }
-    
+
     @Roles(Role.ADMIN)
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -36,7 +36,7 @@ export class UsersController {
 
     @Roles(Role.ADMIN)
     @Delete(':id')
-    async delete(@Param('id') id: GetUserDto) {
+    async delete(@Param('id') id: string) {
         return await this.userService.delete(id);
     }
 }

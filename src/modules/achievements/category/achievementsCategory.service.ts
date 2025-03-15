@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { AchievementCategory } from "./schema/achievementsCategory.schema";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
@@ -13,7 +13,10 @@ export class AchievementsCategoriesService {
     constructor(@InjectModel(AchievementCategory.name) private achievementCategoryModel: Model<AchievementCategory>) { }
 
     async create(categoryDto: CreateAchievementCategoryDto): Promise<IAchievemntCategory> {
-        const category = new this.achievementCategoryModel({ ...categoryDto })
+        if (await this.achievementCategoryModel.findOne({ name: categoryDto.name }))
+            throw new InternalServerErrorException('Category Name Already exist')
+
+            const category = new this.achievementCategoryModel({ ...categoryDto })
         return await category.save()
     }
 
@@ -32,6 +35,9 @@ export class AchievementsCategoriesService {
     }
 
     async delete(id: string) {
+        if (!await this.achievementCategoryModel.findById(id))
+            throw new NotFoundException('User Not Found')
+
         return await this.achievementCategoryModel.findByIdAndDelete(id)
     }
 }

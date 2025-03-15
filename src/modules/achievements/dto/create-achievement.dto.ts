@@ -18,10 +18,10 @@ export class CreateAchievementDto {
     @IsString()
     description: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @Type(() => Date)
     @IsDate()
-    date: Date;
+    deadline: Date;
 
     @IsNotEmpty()
     @IsMongoId()
@@ -30,11 +30,12 @@ export class CreateAchievementDto {
 
     @IsOptional()
     @IsString()
-    awardedBy: string;
+    awardedBy: ObjectId;
 
     @IsNotEmpty()
     @IsMongoId()
-    department: ObjectId;
+    @IsArray()
+    departments: ObjectId[];
 
     @IsOptional()
     @IsString({ each: true })

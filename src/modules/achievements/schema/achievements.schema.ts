@@ -9,20 +9,26 @@ export class Achievement {
     @Prop()
     description: string
 
-    @Prop({ required: true })
-    date: Date
+    @Prop()
+    deadline: Date
 
     @Prop({ type: Types.ObjectId, ref: 'AchievementCategory', required: true })
     categories: ObjectId[]
 
+    @Prop({ type: Types.ObjectId, ref: 'Users', required: true })
+    awardedBy: ObjectId
+
     @Prop()
-    awardedBy: string
-    
+    points: number
+
     @Prop({ type: Types.ObjectId, ref: 'Departments', required: true })
-    department: ObjectId
-    
+    departments: ObjectId[]
+
     @Prop()
     attachments: string[]
+
+    @Prop({ default: Date.now })
+    createdAt: Date;    
 }
 
 

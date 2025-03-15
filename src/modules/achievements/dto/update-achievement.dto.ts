@@ -24,7 +24,7 @@ export class UpdateAchievementDto {
     @IsOptional()
     @Type(() => Date)
     @IsDate()
-    date?: Date;
+    deadline?: Date;
 
     @IsOptional()
     @IsMongoId()
@@ -37,7 +37,8 @@ export class UpdateAchievementDto {
 
     @IsOptional()
     @IsMongoId()
-    department?: ObjectId;
+    @IsArray()
+    department?: ObjectId[];
 
     @IsOptional()
     @IsString({ each: true })

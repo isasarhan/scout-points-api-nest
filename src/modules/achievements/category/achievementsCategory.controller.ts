@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post } from "@nestjs/common";
 import { AchievementsCategoriesService } from "./achievementsCategory.service";
 import { CreateAchievementCategoryDto } from "./dto/create-category.dto";
 import { UpdateAchievementCategoryDto } from "./dto/update-category.dto";
@@ -19,18 +19,18 @@ export class AchievementsCategoryController {
     }
 
     @Post('add')
-    async createCategory(createCategory: CreateAchievementCategoryDto) {
+    async createCategory(@Body() createCategory: CreateAchievementCategoryDto) {
         return await this.categoriesService.create(createCategory)
     }
 
 
     @Delete('edit')
-    async editCategory(updateCategory: UpdateAchievementCategoryDto) {
+    async editCategory(@Body() updateCategory: UpdateAchievementCategoryDto) {
         return await this.categoriesService.update(updateCategory)
     }
 
-    @Delete('delete')
-    async deleteCategory(id: string) {
+    @Delete(':id')
+    async deleteCategory(@Param('id') id: string) {
         return await this.categoriesService.delete(id)
     }
 }
