@@ -55,8 +55,8 @@ export class User {
   @Prop({ default: 0 })
   points: number;
 
-  @Prop()
-  department: string;
+  @Prop({ type: Types.ObjectId, ref: "Department" })
+  department: ObjectId
 
   @Prop()
   profileUrl: string;

@@ -11,8 +11,8 @@ export class DepartmentsController {
     constructor(private departmentService: DepartmentsService) { }
 
     @Get(':id')
-    async findById(@Param('id') id: GetDepartmentDto) {
-        return await this.departmentService.findById(id)
+    async findById(@Param() params: GetDepartmentDto) {
+        return await this.departmentService.findById(params.id)
     }
 
     @Roles(Role.ADMIN)

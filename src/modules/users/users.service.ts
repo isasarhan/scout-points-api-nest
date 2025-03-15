@@ -28,15 +28,15 @@ export class UsersService {
         }, { new: true })
     }
     async findByEmail(email: string): Promise<IUser | null> {
-        return await this.userModel.findOne({ email }).exec()
+        return await this.userModel.findOne({ email }).populate('department', 'name _id').lean<IUser>()
     }
 
     async findById(id: string ) {
-        return await this.userModel.findById(id).exec()
+        return await this.userModel.findById(id).populate('department', 'name _id').lean<IUser>()
     }
 
     async findAll(): Promise<IUser[]> {
-        return await this.userModel.find()
+        return await this.userModel.find().populate('department', 'name _id').lean<IUser[]>()
     }
 
     async delete(id: GetUserDto) {

@@ -21,7 +21,7 @@ export class DepartmentsService {
             ...departmentDto,
         });
         console.log('department', department);
-        
+
         return await department.save();
     }
 
@@ -35,7 +35,7 @@ export class DepartmentsService {
         return await this.departmentModel.findOne({ username: username }).populate('manager').exec()
     }
 
-    async findById(id: GetDepartmentDto) {
+    async findById(id : string) {
         return await this.departmentModel.findById(id).exec()
     }
 

@@ -1,4 +1,6 @@
 import { IsArray, IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { Role } from '../interface/user.interface';
+import { ObjectId } from 'mongoose';
 
 class AddressDto {
     @IsNotEmpty()
@@ -54,8 +56,11 @@ export class CreateUserDto {
     
     @IsArray()
     @IsOptional()
-    achievements?: Object[];
+    achievements?: ObjectId[];
 
     @IsOptional()
-    department?: string;
+    department?: ObjectId;
+
+    @IsOptional()
+    role?: Role;
 }

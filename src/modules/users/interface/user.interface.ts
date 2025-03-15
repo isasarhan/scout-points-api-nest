@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 interface Address {
     street: string;
@@ -6,6 +6,10 @@ interface Address {
     floor: string;
     country: string;
     city: string;
+}
+interface IDepartment {
+    _id: ObjectId;
+    name: string;
 }
 
 export interface IUser extends Document {
@@ -19,7 +23,8 @@ export interface IUser extends Document {
     address: Address;
     nationality: string;
     points: number;
-    department: string;
+    achievements: ObjectId[]
+    department: ObjectId 
     profileUrl:string
     role: Role
     matchPassword(enteredPassword: string): Promise<boolean>;
