@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
@@ -6,6 +6,7 @@ import { Role } from './interface/user.interface';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { GetUsersFilterDto } from './dto/get-users.dto';
 
 @UseGuards(RolesGuard)
 @Controller('users')
@@ -19,8 +20,10 @@ export class UsersController {
 
     @Roles(Role.ADMIN)
     @Get()
-    async findAll() {
-        return await this.userService.findAll()
+    async findAll(@Query() args: GetUsersFilterDto) {
+        const filters = await this.userService.filter(args)
+        const result =  await this.userService.findAll(filters)        
+        return result
     }
     @Roles()
     @Post('add')

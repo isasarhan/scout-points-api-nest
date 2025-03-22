@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AchievementsService } from './achievements.service';
 import {  CreateAchievementDto } from './dto/create-achievement.dto';
 import { GetAchievementDto } from './dto/get-achievement.dto';
@@ -18,8 +18,10 @@ export class AchievementsController {
     }
 
     @Post('add')
-    async create(createAchievementDto: CreateAchievementDto) {
+    async create(@Body() createAchievementDto: CreateAchievementDto) {
         // if(!createAchievementDto.department)
+        console.log('createAchievementDto', createAchievementDto);
+        
         return await this.achievementService.create(createAchievementDto)
     }
 

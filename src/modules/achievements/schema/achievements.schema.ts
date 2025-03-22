@@ -15,7 +15,7 @@ export class Achievement {
     @Prop({ type: Types.ObjectId, ref: 'AchievementCategory', required: true })
     categories: ObjectId[]
 
-    @Prop({ type: Types.ObjectId, ref: 'Users', required: true })
+    @Prop({ type: Types.ObjectId, ref: 'Users' })
     awardedBy: ObjectId
 
     @Prop()

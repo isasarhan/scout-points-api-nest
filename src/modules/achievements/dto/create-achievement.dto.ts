@@ -4,6 +4,7 @@ import {
     IsDate,
     IsMongoId,
     IsNotEmpty,
+    IsNumber,
     IsOptional,
     IsString
 } from "class-validator";
@@ -24,17 +25,21 @@ export class CreateAchievementDto {
     deadline: Date;
 
     @IsNotEmpty()
-    @IsMongoId()
     @IsArray()
+    @IsMongoId({ each: true })
     categories: ObjectId[];
 
     @IsOptional()
     @IsString()
     awardedBy: ObjectId;
+   
+    @IsOptional()
+    @IsNumber()
+    points: number;
 
     @IsNotEmpty()
-    @IsMongoId()
     @IsArray()
+    @IsMongoId({ each: true })
     departments: ObjectId[];
 
     @IsOptional()

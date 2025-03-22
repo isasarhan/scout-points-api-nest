@@ -35,4 +35,5 @@ export enum Role {
     USER = 'user',
     MANAGER = 'manager',
     MODERATOR = 'moderator',
+    LEADER = 'leader',
 }
