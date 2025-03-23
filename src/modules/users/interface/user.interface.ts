@@ -7,10 +7,6 @@ interface Address {
     country: string;
     city: string;
 }
-interface IDepartment {
-    _id: ObjectId;
-    name: string;
-}
 
 export interface IUser extends Document {
     firstName: string;

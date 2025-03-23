@@ -11,6 +11,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { AchievementsCategoriesModule } from './modules/achievements/category/achievementsCategory.module';
+import { EventsModule } from './modules/events/events.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { AchievementsCategoriesModule } from './modules/achievements/category/ac
       load: [configuration],
     }),
     MongooseModule.forRoot(`${process.env.DATABASE_HOST}`),
-    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule],
+    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule, EventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
