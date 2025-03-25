@@ -1,5 +1,5 @@
-import { IsArray, IsEmail, IsMongoId, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
-import { Role } from '../interface/user.interface';
+import { IsArray, IsEmail, IsEnum, IsMongoId, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { Rank, Role } from '../interface/user.interface';
 import { ObjectId } from 'mongoose';
 
 class AddressDto {
@@ -60,4 +60,8 @@ export class UpdateUserDto {
 
     @IsOptional()
     role?: Role;
+
+    @IsEnum(Rank)
+    @IsOptional()
+    rank?: Rank;
 }

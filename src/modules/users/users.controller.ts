@@ -21,13 +21,13 @@ export class UsersController {
     @Roles(Role.ADMIN)
     @Get()
     async findAll(@Query() args: GetUsersFilterDto) {
-        const filters = await this.userService.filter(args)
+        const filters = this.userService.filter(args)
         const result =  await this.userService.findAll(filters)        
         return result
     }
     @Roles()
     @Post('add')
-    async add(@Body() createUserDto: CreateUserDto) {
+    async add(@Body() createUserDto: CreateUserDto) {        
         return await this.userService.create(createUserDto)
     }
 

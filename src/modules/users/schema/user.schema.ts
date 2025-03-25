@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Type } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
-import { Role } from '../interface/user.interface';
+import { Rank, Role } from '../interface/user.interface';
 import { ObjectId, Types } from 'mongoose';
 
 @Schema({ _id: false })
@@ -66,6 +66,9 @@ export class User {
 
   @Prop({ type: String, enum: Role, default: Role.USER })
   role: Role;
+
+  @Prop({ type: String, enum: Rank, default: Rank.SCOUT })
+  rank: Rank;
 
   matchPassword: (enteredPassword: string) => Promise<boolean>;
 }

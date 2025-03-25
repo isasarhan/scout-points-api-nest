@@ -23,6 +23,7 @@ export interface IUser extends Document {
     department: ObjectId 
     profileUrl:string
     role: Role
+    rank: Rank;
     matchPassword(enteredPassword: string): Promise<boolean>;
 }
 
@@ -32,4 +33,12 @@ export enum Role {
     MANAGER = 'manager',
     MODERATOR = 'moderator',
     LEADER = 'leader',
+}
+
+export enum Rank {
+    LEADER = 'leader',
+    ROVER = 'rover',
+    ADVANCED_SCOUT = 'advanced scout',
+    SCOUT = 'scout',
+    CUB = 'cub',
 }

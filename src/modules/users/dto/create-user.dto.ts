@@ -1,5 +1,5 @@
-import { IsArray, IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
-import { Role } from '../interface/user.interface';
+import { IsArray, IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { Rank, Role } from '../interface/user.interface';
 import { ObjectId } from 'mongoose';
 
 class AddressDto {
@@ -27,13 +27,13 @@ export class CreateUserDto {
     lastName: string;
 
     @IsOptional()
-    fatherName?:string
-    
+    fatherName?: string
+
     @IsOptional()
-    motherName?:string
-    
+    motherName?: string
+
     @IsOptional()
-    profileUrl?:string
+    profileUrl?: string
 
     @IsEmail()
     email: string;
@@ -53,7 +53,7 @@ export class CreateUserDto {
 
     @IsOptional()
     points?: number;
-    
+
     @IsArray()
     @IsOptional()
     achievements?: ObjectId[];
@@ -61,6 +61,11 @@ export class CreateUserDto {
     @IsOptional()
     department?: ObjectId;
 
+    @IsEnum(Role)
     @IsOptional()
     role?: Role;
+
+    @IsEnum(Rank)
+    @IsOptional()
+    rank?: Rank;
 }
