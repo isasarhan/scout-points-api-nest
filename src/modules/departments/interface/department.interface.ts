@@ -5,6 +5,7 @@ export enum EnumDepartmentType {
 }
 export enum EnumDepartmentStatus {
     ACTIVE = 'active',
+    INACTIVE = 'in active',
     ARCHIVED = 'archived'
 }
 export interface ILocation {

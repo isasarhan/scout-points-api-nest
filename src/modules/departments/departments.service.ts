@@ -20,8 +20,6 @@ export class DepartmentsService {
         const department = new this.departmentModel({
             ...departmentDto,
         });
-        console.log('department', department);
-
         return await department.save();
     }
 
