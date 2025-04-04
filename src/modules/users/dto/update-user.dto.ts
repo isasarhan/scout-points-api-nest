@@ -51,6 +51,9 @@ export class UpdateUserDto {
     @IsOptional()
     points?: number;
 
+    @IsOptional()
+    isSuperAdmin?: boolean;
+
     @IsArray()
     @IsOptional()
     achievements?: ObjectId[];

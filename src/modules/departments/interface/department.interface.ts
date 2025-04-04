@@ -1,7 +1,9 @@
 import { Document, ObjectId } from "mongoose";
 
 export enum EnumDepartmentType {
-    SCOUT = 'scout'
+    SCOUT = 'scout',
+    UNIVERSITY = 'university',
+    NEIGHBORHOOD = 'neighborhood'
 }
 export enum EnumDepartmentStatus {
     ACTIVE = 'active',

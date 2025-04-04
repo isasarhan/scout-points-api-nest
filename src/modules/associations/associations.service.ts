@@ -18,10 +18,9 @@ export class AssociationsService {
         return await association.save()
     }
 
-    async update(associationDto: UpdateAssociationDto): Promise<IAssociation | null> {
-        const { _id, ...association } = associationDto
-        return await this.associationModel.findByIdAndUpdate(_id, {
-            $set: association
+    async update(id:string, associationDto: UpdateAssociationDto): Promise<IAssociation | null> {
+        return await this.associationModel.findByIdAndUpdate(id, {
+            $set: associationDto
         }, { new: true })
     }
 

@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsOptional, IsString, IsUrl } from "class-validator";
+import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl } from "class-validator";
+import { EnumAssociationType } from "../interface/association.interface";
 
 export class CreateAssociationDto {
     @IsNotEmpty()
@@ -6,8 +7,8 @@ export class CreateAssociationDto {
     name: string;
 
     @IsNotEmpty()
-    @IsString()
-    type: string;
+    @IsEnum(EnumAssociationType)
+    type: EnumAssociationType;
 
     @IsOptional()
     @IsString()

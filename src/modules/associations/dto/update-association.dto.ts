@@ -1,17 +1,14 @@
-import { IsMongoId, IsOptional, IsString, IsUrl } from "class-validator";
+import { IsEnum, IsMongoId, IsOptional, IsString, IsUrl } from "class-validator";
+import { EnumAssociationType } from "../interface/association.interface";
 
 export class UpdateAssociationDto {
-    @IsOptional()
-    @IsMongoId()
-    _id?: string
-
     @IsOptional()
     @IsString()
     name?: string;
 
     @IsOptional()
-    @IsString()
-    type?: string;
+    @IsEnum(EnumAssociationType)
+    type?: EnumAssociationType;
 
     @IsOptional()
     @IsString()

@@ -35,7 +35,7 @@ export class DepartmentsController {
     
     @Roles(Role.ADMIN)
     @Delete(':id')
-    async delete(@Param('id') id: GetDepartmentDto) {
+    async delete(@Param('id') {id}: GetDepartmentDto) {
         return await this.departmentService.delete(id)
     }
 

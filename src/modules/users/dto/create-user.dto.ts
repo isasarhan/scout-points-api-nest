@@ -33,6 +33,9 @@ export class CreateUserDto {
     motherName?: string
 
     @IsOptional()
+    isSuperAdmin?: boolean;
+
+    @IsOptional()
     profileUrl?: string
 
     @IsEmail()

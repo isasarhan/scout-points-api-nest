@@ -16,6 +16,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     phone: string;
+    isSuperAdmin: boolean;
     address: Address;
     nationality: string;
     points: number;

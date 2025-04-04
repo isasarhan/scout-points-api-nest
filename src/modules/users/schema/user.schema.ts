@@ -45,6 +45,9 @@ export class User {
   @Prop()
   phone: string;
 
+  @Prop()
+  isSuperAdmin: boolean;
+
   @Prop({ type: Address })
   @Type(() => Address)
   address: Address

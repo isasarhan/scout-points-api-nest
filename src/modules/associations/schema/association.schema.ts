@@ -1,13 +1,14 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Types } from "mongoose";
+import { Document } from "mongoose";
+import { EnumAssociationType } from "../interface/association.interface";
 
 @Schema({ timestamps: true })
 export class Association extends Document {
     @Prop({ required: true })
     name: string;
 
-    @Prop({ required: true })
-    type: string;
+    @Prop({ type: String, enum: EnumAssociationType, default: EnumAssociationType.SCOUT })
+    type: EnumAssociationType;
 
     @Prop()
     description?: string;

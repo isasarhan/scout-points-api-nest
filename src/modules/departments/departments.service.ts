@@ -41,7 +41,7 @@ export class DepartmentsService {
         return await this.departmentModel.find()
     }
 
-    async delete(id: GetDepartmentDto) {
+    async delete(id: string) {
         return await this.departmentModel.findByIdAndDelete(id)
     }
 }
