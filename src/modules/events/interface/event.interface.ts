@@ -26,7 +26,7 @@ export interface IEvent extends Document {
     endDate: Date;
     manager?: ObjectId
     timeRange: TimeRangeValue
-    department?: ObjectId;
+    departments?: ObjectId[];
     attendees: IAttendee[];
 }
 

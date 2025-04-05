@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ObjectId, Types } from "mongoose";
+import { Level } from "../interface/achievements.interface";
 
 @Schema()
 export class Achievement {
@@ -8,6 +9,12 @@ export class Achievement {
 
     @Prop()
     description: string
+
+    @Prop()
+    requirements: string[]
+
+    @Prop({ type: String, enum: Level, default: Level.BEGINNER })
+    level: Level;
 
     @Prop()
     deadline: Date
@@ -28,7 +35,7 @@ export class Achievement {
     attachments: string[]
 
     @Prop({ default: Date.now })
-    createdAt: Date;    
+    createdAt: Date;
 }
 
 

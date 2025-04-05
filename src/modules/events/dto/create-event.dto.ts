@@ -40,7 +40,7 @@ export class CreateEventDto {
     manager?: ObjectId
 
     @IsOptional()
-    department?: ObjectId
+    departments?: ObjectId[]
 
     @IsOptional()
     @IsArray()

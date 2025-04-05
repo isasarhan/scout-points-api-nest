@@ -27,15 +27,15 @@ export class EventsService {
     }
 
     async findByType(type: EventType): Promise<IEvent | null> {
-        return await this.eventModel.findOne({ type }).populate('department', 'name _id').populate('attendees.user', 'firstName lastName email').exec()
+        return await this.eventModel.findOne({ type }).populate('departments', 'name _id').populate('attendees.user', 'firstName lastName email').exec()
     }
 
     async findById(id: string) {
-        return await this.eventModel.findById(id).populate('department', 'name _id').populate('attendees.user', 'firstName lastName email').exec()
+        return await this.eventModel.findById(id).populate('departments', 'name _id').populate('attendees.user', 'firstName lastName email').exec()
     }
 
     async findAll(): Promise<IEvent[]> {
-        return await this.eventModel.find().populate('department', 'name _id').populate('attendees.user', 'firstName lastName email')
+        return await this.eventModel.find().populate('departments', 'name _id').populate('attendees.user', 'firstName lastName email')
     }
 
     async delete(id: string) {

@@ -2,6 +2,7 @@ import { Type } from "class-transformer";
 import {
     IsArray,
     IsDate,
+    IsEnum,
     IsMongoId,
     IsNotEmpty,
     IsNumber,
@@ -9,6 +10,7 @@ import {
     IsString
 } from "class-validator";
 import { ObjectId } from "mongoose";
+import { Level } from "../interface/achievements.interface";
 
 export class CreateAchievementDto {
     @IsNotEmpty()
@@ -32,7 +34,7 @@ export class CreateAchievementDto {
     @IsOptional()
     @IsString()
     awardedBy: ObjectId;
-   
+
     @IsOptional()
     @IsNumber()
     points: number;
@@ -45,4 +47,12 @@ export class CreateAchievementDto {
     @IsOptional()
     @IsString({ each: true })
     attachments: string[];
+
+    @IsOptional()
+    @IsString({ each: true })
+    requirements: string[];
+
+    @IsEnum(Level)
+    @IsOptional()
+    level: Level;
 }

@@ -66,7 +66,7 @@ export class Event {
     manager: ObjectId;
     
     @Prop({ type: Types.ObjectId, ref: "Department" })
-    department: ObjectId;
+    departments: ObjectId[];
 
     @Prop({ type: String, enum: EventType, default: EventType.INDOOR })
     type: EventType;

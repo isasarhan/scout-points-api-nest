@@ -13,28 +13,28 @@ export class EventsController {
     constructor(private eventService: EventsService) { }
 
     @Get(':id')
-    async findById(@Param() params: GetEventDto) {
+    async findById(@Param() params: GetEventDto) {        
         return await this.eventService.findById(params.id)
     }
 
     @Roles(Role.ADMIN)
     @Get()
-    async findAll() {
+    async findAll() {                
         return await this.eventService.findAll()
     }
-    
+
     @Roles(Role.ADMIN)
     @Post('add')
     async add(@Body() createDepartmentDto: CreateEventDto) {
         return await this.eventService.create(createDepartmentDto)
     }
-    
+
     @Roles(Role.ADMIN)
     @Put(':id')
     async update(@Param('id') id: string, @Body() updateDepartmentDto: UpdateEventDto) {
         return await this.eventService.update(id, updateDepartmentDto)
     }
-    
+
     @Roles(Role.ADMIN)
     @Delete(':id')
     async delete(@Param('id') id: string) {

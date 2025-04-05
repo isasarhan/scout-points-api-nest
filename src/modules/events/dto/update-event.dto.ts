@@ -38,7 +38,7 @@ export class UpdateEventDto {
     manager?: ObjectId
     
     @IsOptional()
-    department?: ObjectId
+    departments?: ObjectId[]
 
     @IsOptional()
     endDate?: Date;

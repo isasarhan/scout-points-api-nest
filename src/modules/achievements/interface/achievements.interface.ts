@@ -8,5 +8,12 @@ export interface IAchievement extends Document {
     departments: ObjectId[];
     attachments?: string[];
     points: number
+    requirements: string[]
+    level: Level;
 
+}
+export enum Level {
+    BEGINNER = "beginner",
+    INTERMEDIATE = "intermediate",
+    ADVANCED = "advanced",
 }
