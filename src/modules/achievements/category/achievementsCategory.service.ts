@@ -20,9 +20,8 @@ export class AchievementsCategoriesService {
         return await category.save()
     }
 
-    async update(categoryDto: UpdateAchievementCategoryDto): Promise<IAchievemntCategory | null> {
-        const { _id, ...category } = categoryDto
-        return await this.achievementCategoryModel.findByIdAndUpdate(_id, {
+    async update(id:string, category: UpdateAchievementCategoryDto): Promise<IAchievemntCategory | null> {
+        return await this.achievementCategoryModel.findByIdAndUpdate(id, {
             $set: category
         }, { new: true })
     }

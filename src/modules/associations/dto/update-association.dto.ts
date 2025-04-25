@@ -1,20 +1,6 @@
-import { IsEnum, IsMongoId, IsOptional, IsString, IsUrl } from "class-validator";
-import { EnumAssociationType } from "../interface/association.interface";
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateAssociationDto } from './create-association.dto';
 
-export class UpdateAssociationDto {
-    @IsOptional()
-    @IsString()
-    name?: string;
 
-    @IsOptional()
-    @IsEnum(EnumAssociationType)
-    type?: EnumAssociationType;
-
-    @IsOptional()
-    @IsString()
-    description?: string;
-
-    @IsOptional()
-    @IsUrl()
-    website?: string;
-}
+export class UpdateAssociationDto extends PartialType(CreateAssociationDto){}
+ 

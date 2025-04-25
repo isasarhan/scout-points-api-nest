@@ -1,22 +1,4 @@
-import {
-    IsMongoId,
-    IsOptional,
-    IsString,
-} from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateAchievementCategoryDto } from './create-category.dto';
 
-export class UpdateAchievementCategoryDto {
-    @IsMongoId()
-    _id?: string;
-
-    @IsOptional()
-    @IsString()
-    name?: string;
-
-    @IsOptional()
-    @IsString()
-    description?: string;
-
-    @IsOptional()
-    @IsString()
-    imageUrl: string;
-}
+export class UpdateAchievementCategoryDto extends PartialType(CreateAchievementCategoryDto){}

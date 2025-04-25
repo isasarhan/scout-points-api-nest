@@ -35,7 +35,7 @@ export class CreateDepartmentDto {
   @IsString()
   description: string;
 
-  @IsMongoId()
-  @IsOptional()
+    @IsMongoId()
+    @IsOptional()
   manager?: ObjectId;
 }

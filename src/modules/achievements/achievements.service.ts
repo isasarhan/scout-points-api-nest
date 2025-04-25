@@ -16,9 +16,8 @@ export class AchievementsService {
         return await achievement.save()
     }
 
-    async update(achievementDto: UpdateAchievementDto): Promise<IAchievement | null> {
-        const { _id, ...achievement } = achievementDto
-        return await this.achievementModel.findByIdAndUpdate(_id, {
+    async update(id:string, achievement: UpdateAchievementDto): Promise<IAchievement | null> {
+        return await this.achievementModel.findByIdAndUpdate(id, {
             $set: achievement
         }, { new: true })
     }

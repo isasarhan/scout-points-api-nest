@@ -1,48 +1,6 @@
-import { ObjectId } from "mongoose";
-import { EventType, Status, TimeRangeValue } from "../interface/event.interface";
-import { IsEnum, IsOptional } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateEventDto } from './create-event.dto';
 
-export class UpdateAttendeeDto {
-    @IsOptional()
-    user?: ObjectId;
 
-    @IsOptional()
-    attendance?: Date;
-
-    @IsOptional()
-    @IsEnum(Status)
-    status?: Status;
-}
-
-export class UpdateEventDto {
-    @IsOptional()
-    @IsEnum(EventType)
-    type?: EventType
-    
-    @IsOptional()
-    location?: string;
-
-    @IsOptional()
-    name?: string;
-    
-    @IsOptional()
-    timeRange?: TimeRangeValue;
-
-    @IsOptional()
-    description?: string;
-    
-    @IsOptional()
-    startDate?: Date;
-
-    @IsOptional()
-    manager?: ObjectId
-    
-    @IsOptional()
-    departments?: ObjectId[]
-
-    @IsOptional()
-    endDate?: Date;
-
-    @IsOptional()
-    attendees?: UpdateAttendeeDto[];
-}
+export class UpdateEventDto extends PartialType(CreateEventDto){}
+ 
