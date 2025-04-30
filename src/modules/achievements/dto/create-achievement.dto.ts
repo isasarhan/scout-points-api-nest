@@ -11,6 +11,7 @@ import {
 } from "class-validator";
 import { ObjectId } from "mongoose";
 import { Level } from "../interface/achievements.interface";
+import { Rank } from "src/modules/users/interface/user.interface";
 
 export class CreateAchievementDto {
     @IsNotEmpty()
@@ -55,4 +56,8 @@ export class CreateAchievementDto {
     @IsEnum(Level)
     @IsOptional()
     level: Level;
+
+    @IsEnum(Rank)
+    @IsOptional()
+    rank: Rank;
 }

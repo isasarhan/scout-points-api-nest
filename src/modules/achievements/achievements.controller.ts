@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { AchievementsService } from './achievements.service';
 import {  CreateAchievementDto } from './dto/create-achievement.dto';
 import { GetAchievementDto } from './dto/get-achievement.dto';
 import { UpdateAchievementDto } from './dto/update-achievement.dto';
+import { GetAchievementsFilter } from './dto/get-achievements.dto';
 
 @Controller('achievements')
 export class AchievementsController {
@@ -14,8 +15,9 @@ export class AchievementsController {
     }
 
     @Get()
-    async findAll() {
-        return await this.achievementService.findAll()
+    async findAll(@Query() args: GetAchievementsFilter) {
+        const filters = this.achievementService.filter(args)
+        return await this.achievementService.findAll(filters)
     }
 
     @Post('add')

@@ -3,7 +3,7 @@ import { AchievementRequestService } from './achievements-requests.service';
 import {  CreateAchievementRequestDto  } from './dto/create-achievements-requests.dto';
 import { UpdateAchievementRequestDto } from './dto/update-achievements-requests.dto';
 
-@Controller('achievement-request')
+@Controller('achievement-requests')
 export class AchievementRequestController {
     constructor(private achievementRequestService: AchievementRequestService) { }
 

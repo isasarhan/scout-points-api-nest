@@ -12,6 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { AchievementsCategoriesModule } from './modules/achievements/category/achievementsCategory.module';
 import { EventsModule } from './modules/events/events.module';
+import { AchievementRequestModule } from './modules/achievementsRequests/achievements-requests.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { EventsModule } from './modules/events/events.module';
       load: [configuration],
     }),
     MongooseModule.forRoot(`${process.env.DATABASE_HOST}`),
-    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule, EventsModule],
+    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule, EventsModule, AchievementRequestModule],
   controllers: [AppController],
   providers: [AppService],
 })

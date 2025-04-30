@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ObjectId, Types } from "mongoose";
 import { Level } from "../interface/achievements.interface";
+import { Rank } from "src/modules/users/interface/user.interface";
 
 @Schema()
 export class Achievement {
@@ -15,6 +16,9 @@ export class Achievement {
 
     @Prop({ type: String, enum: Level, default: Level.BEGINNER })
     level: Level;
+
+    @Prop({ type: String, enum: Rank, default: Rank.SCOUT })
+    rank: Rank;
 
     @Prop()
     deadline: Date

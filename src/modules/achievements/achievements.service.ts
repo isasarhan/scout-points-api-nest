@@ -6,6 +6,8 @@ import { CreateAchievementDto } from './dto/create-achievement.dto';
 import { IAchievement } from './interface/achievements.interface';
 import { UpdateAchievementDto } from './dto/update-achievement.dto';
 import { GetAchievementDto } from './dto/get-achievement.dto';
+import { GetAchievementsFilter } from './dto/get-achievements.dto';
+import { IFilter } from 'src/common/types/filter';
 
 @Injectable()
 export class AchievementsService {
@@ -22,8 +24,15 @@ export class AchievementsService {
         }, { new: true })
     }
 
-    async findAll(): Promise<IAchievement[]> {
-        return await this.achievementModel.find().exec()
+    filter(args: GetAchievementsFilter): IFilter{
+        return {
+            ...args.level && { phone: args.level },
+            ...args.rank && { phone: args.rank },
+           
+        }
+    }
+    async findAll(filters: IFilter) {
+        return await this.achievementModel.find(filters).exec()
     }
 
     async findById(id: GetAchievementDto) {
