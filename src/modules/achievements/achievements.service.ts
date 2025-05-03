@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {  Achievement } from './schema/achievements.schema';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateAchievementDto } from './dto/create-achievement.dto';
 import { IAchievement } from './interface/achievements.interface';
@@ -35,7 +35,7 @@ export class AchievementsService {
         return await this.achievementModel.find(filters).exec()
     }
 
-    async findById(id: GetAchievementDto) {
+    async findById(id: string | ObjectId) {
         return await this.achievementModel.findById(id).exec()
     }
 

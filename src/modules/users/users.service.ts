@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
-import { FilterQuery, Model } from 'mongoose';
+import { FilterQuery, Model, ObjectId, Types } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { IUser } from './interface/user.interface';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -25,7 +25,7 @@ export class UsersService {
 
         return await user.save();
     }
-    async update(id: string, userDto: UpdateUserDto): Promise<IUser | null> {
+    async update(id: string | Types.ObjectId, userDto: UpdateUserDto): Promise<IUser | null> {
         return await this.userModel.findByIdAndUpdate(id, {
             $set: userDto
         }, { new: true })
@@ -34,7 +34,7 @@ export class UsersService {
         return await this.userModel.findOne({ email }).populate('department', 'name _id')
     }
 
-    async findById(id: string) {
+    async findById(id: string | ObjectId) {
         return await this.userModel.findById(id).populate('department', 'name _id')
     }
     filter(args: GetUsersFilterDto): IFilter{

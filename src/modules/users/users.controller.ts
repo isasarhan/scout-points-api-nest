@@ -22,7 +22,7 @@ export class UsersController {
     @Get()
     async findAll(@Query() args: GetUsersFilterDto) {
         const filters = this.userService.filter(args)
-        const result =  await this.userService.findAll(filters)        
+        const result =  await this.userService.findAll(filters)                
         return result
     }
     @Roles()

@@ -10,7 +10,7 @@ export class AchievementsController {
     constructor(private achievementService: AchievementsService) { }
 
     @Get(':id')
-    async findById(@Param('id') id: GetAchievementDto) {
+    async findById(@Param('id') id: string) {
         return await this.achievementService.findById(id)
     }
 
