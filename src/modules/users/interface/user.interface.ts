@@ -19,6 +19,7 @@ export interface IUser extends Document {
     isSuperAdmin: boolean;
     address: Address;
     nationality: string;
+    isApproved: boolean;
     points: number;
     achievements: ObjectId[]
     department: ObjectId 

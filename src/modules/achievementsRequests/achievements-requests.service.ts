@@ -22,7 +22,7 @@ export class AchievementRequestService {
     }
 
     async findAll() {
-        return await this.achievementRequestModel.find().exec()
+        return await this.achievementRequestModel.find().populate('user').populate('achievement').exec()
     }
 
     async findById(id: string) {

@@ -10,7 +10,7 @@ export enum Status {
 
 @Schema({ timestamps: true })
 export class AchievementRequest extends Document {
-    @Prop({ type: Types.ObjectId, ref: 'user', required: false })
+    @Prop({ type: Types.ObjectId, ref: 'User', required: false })
     user: ObjectId
 
     @Prop({ type: Types.ObjectId, ref: 'Achievement', required: false })

@@ -1,4 +1,4 @@
-import { IsArray, IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 import { Rank, Role } from '../interface/user.interface';
 import { ObjectId } from 'mongoose';
 
@@ -56,6 +56,10 @@ export class CreateUserDto {
 
     @IsOptional()
     points?: number;
+
+    @IsOptional()
+    @IsBoolean()
+    isApproved?: boolean;
 
     @IsArray()
     @IsOptional()

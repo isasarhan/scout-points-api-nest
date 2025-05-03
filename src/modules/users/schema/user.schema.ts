@@ -73,6 +73,9 @@ export class User {
   @Prop({ type: String, enum: Rank, default: Rank.SCOUT })
   rank: Rank;
 
+  @Prop({ type: Boolean, default: false })
+  isApproved: boolean;
+  
   matchPassword: (enteredPassword: string) => Promise<boolean>;
 }
 
