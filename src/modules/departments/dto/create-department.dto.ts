@@ -19,9 +19,6 @@ export class LocationDto {
 export class CreateDepartmentDto {
   @IsNotEmpty()
   name: string;
-  
-  @IsNotEmpty()
-  username: string;
 
   @IsNotEmpty()
   location: LocationDto;
@@ -35,7 +32,7 @@ export class CreateDepartmentDto {
   @IsString()
   description: string;
 
-    @IsMongoId()
-    @IsOptional()
+  @IsMongoId()
+  @IsOptional()
   manager?: ObjectId;
 }

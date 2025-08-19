@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AssociationsService } from './associations.service';
 import { GetAsssociationDto } from './dto/get-association.dto';
-import { Role } from '../users/interface/user.interface';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { CreateAssociationDto } from './dto/create-association.dto';
 import { UpdateAssociationDto } from './dto/update-association.dto';
+import { Role } from '../auth/interface/auth.interface';
 
 @Controller('associations')
 export class AssociationsController {

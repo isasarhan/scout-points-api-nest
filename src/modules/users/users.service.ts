@@ -12,7 +12,7 @@ import { IFilter } from 'src/common/types/filter';
 export class UsersService {
     constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
-    async create(userDto: CreateUserDto): Promise<IUser> {
+    async create(userDto: CreateUserDto) {
         
         const existingUser = await this.userModel.findOne({ email: userDto.email }).exec();
         if (existingUser) {
@@ -25,12 +25,12 @@ export class UsersService {
 
         return await user.save();
     }
-    async update(id: string | Types.ObjectId, userDto: UpdateUserDto): Promise<IUser | null> {
+    async update(id: string | Types.ObjectId, userDto: UpdateUserDto) {
         return await this.userModel.findByIdAndUpdate(id, {
             $set: userDto
         }, { new: true })
     }
-    async findByEmail(email: string): Promise<IUser | null> {
+    async findByEmail(email: string) {
         return await this.userModel.findOne({ email }).populate('department', 'name _id')
     }
 
@@ -51,8 +51,8 @@ export class UsersService {
             },
         }
     }
-    async findAll(filters: IFilter): Promise<IUser[]> {
-        return await this.userModel.find(filters).populate('department', 'name _id')
+    async findAll(filters: IFilter) {
+        return await this.userModel.find(filters)
     }
 
     async delete(id: string) {

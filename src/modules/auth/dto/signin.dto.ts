@@ -1,8 +1,8 @@
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 
 export class SignInDto {
-    @IsEmail()
-    email: string;
+    @IsNotEmpty()
+    username: string;
 
     @IsNotEmpty()
     @MinLength(6)

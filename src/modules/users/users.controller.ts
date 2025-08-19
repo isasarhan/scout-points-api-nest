@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Que
 import { UsersService } from './users.service';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
-import { Role } from './interface/user.interface';
+import { Role } from '../auth/interface/auth.interface'
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';

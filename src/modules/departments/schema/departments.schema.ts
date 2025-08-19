@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Type } from "class-transformer";
-import { User } from "src/modules/users/schema/user.schema";
 import { EnumDepartmentStatus, EnumDepartmentType } from "../interface/department.interface";
 import { ObjectId, Types } from "mongoose";
 
@@ -24,9 +23,6 @@ class Location {
 export class Department {
     @Prop({ required: true })
     name: string;
-
-    @Prop({ required: true })
-    username: string;
 
     @Prop({ type: Location })
     @Type(() => Location)

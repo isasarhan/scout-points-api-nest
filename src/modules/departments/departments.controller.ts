@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { DepartmentsService } from './departments.service'
 import { Roles } from 'src/common/decorators/roles.decorator'
-import { Role } from '../users/interface/user.interface'
 import { CreateDepartmentDto } from './dto/create-department.dto'
 import { UpdateDepartmentDto } from './dto/update-department.dto'
 import { GetDepartmentDto } from './dto/get-department.dto'
+import { Role } from '../auth/interface/auth.interface'
 
 @Controller('departments')
 export class DepartmentsController {

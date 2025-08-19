@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { Roles } from 'src/common/decorators/roles.decorator'
-import { Role } from '../users/interface/user.interface'
+import { Role } from '../auth/interface/auth.interface'
 import { EventsService } from './events.service'
 import { GetEventDto } from './dto/get-event.dto'
 import { CreateEventDto } from './dto/create-event.dto'

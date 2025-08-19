@@ -1,7 +1,6 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, NotFoundException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Role } from 'src/modules/users/interface/user.interface';
-import { User } from 'src/modules/users/schema/user.schema';
+import { IAccount, Role } from 'src/modules/auth/interface/auth.interface';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -9,12 +8,18 @@ export class RolesGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean {
         const requiredRoles = this.reflector.get<Role[]>('roles', context.getHandler());
+        console.log('requiredRoles', requiredRoles);
+
         if (!requiredRoles) {
             return true;
         }
 
         const request = context.switchToHttp().getRequest();
-        const user: User = request.user;
+        console.log('request', request.user);
+        
+        const user: IAccount = request.user;
+        if (!user)
+            throw new NotFoundException('user not found')
         if (user.role === Role.ADMIN) return true
         return requiredRoles.includes(user.role)
     }
