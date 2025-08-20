@@ -68,7 +68,6 @@ export class AuthService {
         if (!account) {
             throw new NotFoundException('Account not found')
         }
-        console.log('account', account);
 
         const isPasswordValid = account.matchPassword(password)
 
@@ -76,7 +75,6 @@ export class AuthService {
             throw new UnauthorizedException('Invalid credentials')
         }
         const user = await this.usersService.findById(account.user)
-        console.log('user', user);
 
         const token = this.generateJwtToken(account._id.toString())
 

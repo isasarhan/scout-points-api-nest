@@ -13,6 +13,9 @@ import { AuthMiddleware } from './common/middlewares/auth.middleware';
 import { AchievementsCategoriesModule } from './modules/achievements/category/achievementsCategory.module';
 import { EventsModule } from './modules/events/events.module';
 import { AchievementRequestModule } from './modules/achievementsRequests/achievements-requests.module';
+import { UploadModule } from './modules/upload/upload.module';
+import { BlogModule } from './modules/blog/blog.module';
+import { BlogCategoriesModule } from './modules/blog/category/categories.module';
 
 @Module({
   imports: [
@@ -21,12 +24,28 @@ import { AchievementRequestModule } from './modules/achievementsRequests/achieve
       load: [configuration],
     }),
     MongooseModule.forRoot(`${process.env.DATABASE_HOST}`),
-    UsersModule, AssociationsModule, DepartmentsModule, AchievementsModule, AuthModule, AchievementsCategoriesModule, EventsModule, AchievementRequestModule],
+    UsersModule,
+    AssociationsModule,
+    DepartmentsModule,
+    AchievementsModule,
+    AuthModule,
+    AchievementsCategoriesModule,
+    EventsModule,
+    AchievementRequestModule,
+    UploadModule,
+    BlogModule,
+    BlogCategoriesModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes('users')
-  }
+export class AppModule  {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(AuthMiddleware).forRoutes('users')
+  // }
 }
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(AuthMiddleware).forRoutes('users')
+//   }
+// }

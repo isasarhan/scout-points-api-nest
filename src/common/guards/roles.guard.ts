@@ -8,18 +8,16 @@ export class RolesGuard implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean {
         const requiredRoles = this.reflector.get<Role[]>('roles', context.getHandler());
-        console.log('requiredRoles', requiredRoles);
 
         if (!requiredRoles) {
             return true;
         }
 
         const request = context.switchToHttp().getRequest();
-        console.log('request', request.user);
         
         const user: IAccount = request.user;
         if (!user)
-            throw new NotFoundException('user not found')
+            throw new NotFoundException('a valid token is needed')
         if (user.role === Role.ADMIN) return true
         return requiredRoles.includes(user.role)
     }

@@ -8,19 +8,21 @@ import { GetUserDto } from './dto/get-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUsersFilterDto } from './dto/get-users.dto';
 
-@UseGuards(RolesGuard)
+// @UseGuards(RolesGuard)
 @Controller('users')
 export class UsersController {
     constructor(private userService: UsersService) { }
 
-    @Get(':id')
-    async findById(@Param() params: GetUserDto) {
-        return await this.userService.findById(params.id)
-    }
-
+    
+    // @Get(':id')
+    // async findById(@Param() params: GetUserDto) {
+    //     return await this.userService.findById(params.id)
+    // }
     @Roles(Role.ADMIN)
     @Get()
     async findAll(@Query() args: GetUsersFilterDto) {
+        console.log('findAll');
+        
         const filters = this.userService.filter(args)
         const result =  await this.userService.findAll(filters)                
         return result
