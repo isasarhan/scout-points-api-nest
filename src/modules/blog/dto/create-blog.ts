@@ -18,7 +18,6 @@ export class CreateBlogArgs {
     rating?: number
     
     @IsOptional()
-    @ValidateNested({ each: true })
     categories: Types.ObjectId[]
 
     @IsOptional()

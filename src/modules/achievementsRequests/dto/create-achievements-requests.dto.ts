@@ -15,11 +15,11 @@ import { Status } from "../schema/achievements-requests.schema";
 export class CreateAchievementRequestDto {
     @IsNotEmpty()
     @IsMongoId()
-    user: ObjectId
+    user: string
 
     @IsNotEmpty()
     @IsMongoId()
-    achievement: ObjectId
+    achievement: string
 
     @IsEnum(Status)
     @IsOptional()

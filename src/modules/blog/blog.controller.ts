@@ -31,11 +31,12 @@ export class BlogController {
         { name: 'featuredImage', maxCount: 1 },
         { name: 'coverImage', maxCount: 1 },
     ],))
+
     async createBlog(
         @UploadedFiles() files: { featuredImage?: Express.Multer.File[], coverImage?: Express.Multer.File[] },
         @Body() args: CreateBlogArgs) {
         let cover = '', featured = '';
-        const { coverImage, featuredImage } = files        
+        const { coverImage, featuredImage } = files
 
         if (coverImage || featuredImage) {
             if (coverImage)
@@ -43,31 +44,46 @@ export class BlogController {
 
             if (featuredImage)
                 featured = await this.uploadService.uploadFile(featuredImage[0])
-            
+
             return this.service.create({ ...args, coverImage: cover, featuredImage: featured })
         }
 
         return this.service.create({ ...args })
     }
 
-    // @UseGuards(GqlAuthGuard)
     @Put(':id')
-    async updateBlog(@Param('id') id: string, @Body() args: UpdateBlogArgs) {
-        let cover = '', featured = ''
-        // const { coverImage, featuredImage, ...blog } = args
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'featuredImage', maxCount: 1 },
+        { name: 'coverImage', maxCount: 1 },
+    ],))
+    async updateBlog(
+        @Param('id') id: string,
+        @UploadedFiles() files: { featuredImage?: Express.Multer.File[], coverImage?: Express.Multer.File[] },
+        @Body() args: UpdateBlogArgs) {
+            
+        const { coverImage, featuredImage } = files
+        if (coverImage || featuredImage) {
+            let cover: string | undefined;
+            let featured: string | undefined;
 
-        // if (coverImage || featuredImage) {
-        //     if (coverImage)
-        //         cover = await this.uploadService.uploadFile({ file: coverImage })
+            if (coverImage) {
+                cover = await this.uploadService.uploadFile(coverImage[0]);
+            }
 
-        //     if (featuredImage)
-        //         featured = await this.uploadService.uploadFile({ file: featuredImage })
+            if (featuredImage) {
+                featured = await this.uploadService.uploadFile(featuredImage[0]);
+            }
 
-        //     return this.service.update({ ...blog, coverImage: cover, featuredImage: featured })
-        // }
+            return this.service.update(id, {
+                ...args,
+                ...(cover && { coverImage: cover }),
+                ...(featured && { featuredImage: featured }),
+            });
+        }
+
         return this.service.update(id, { ...args })
     }
-    // @UseGuards(GqlAuthGuard)
+
     @Delete(':id')
     async removeBlog(@Param('id') id: string) {
         return this.service.remove(id)

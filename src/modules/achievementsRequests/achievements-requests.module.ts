@@ -5,9 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AchievementRequest, AchievementRequestSchema } from './schema/achievements-requests.schema';
 import { UsersModule } from '../users/users.module';
 import { AchievementsModule } from '../achievements/achievements.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [UsersModule, AchievementsModule, MongooseModule.forFeature([{ name: AchievementRequest.name, schema: AchievementRequestSchema }])],
+  imports: [UsersModule, AuthModule,AchievementsModule, MongooseModule.forFeature([{ name: AchievementRequest.name, schema: AchievementRequestSchema }])],
   controllers: [AchievementRequestController],
   providers: [AchievementRequestService]
 })

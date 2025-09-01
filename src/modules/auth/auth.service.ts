@@ -74,11 +74,24 @@ export class AuthService {
         if (!isPasswordValid) {
             throw new UnauthorizedException('Invalid credentials')
         }
-        const user = await this.usersService.findById(account.user)
+        const userDoc = await this.usersService.findById(account.user)
 
+        if (!userDoc) {
+            throw new NotFoundException('User not found')
+        }
         const token = this.generateJwtToken(account._id.toString())
+        const { role, isSuperAdmin, isApproved } = account
+        const user = userDoc.toObject();
 
-        return { token, user, account }
+        return {
+            token, user: {
+                ...user,
+                role,
+                isSuperAdmin,
+                isApproved,
+                username
+            }
+        }
     }
 
     private generateJwtToken(userId: string): string {
